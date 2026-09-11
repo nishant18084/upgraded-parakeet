@@ -1,167 +1,519 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Creative Space</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevPulse - Modern Platform</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
 
-        body {
-            background-color: #0f172a;
-            color: #f8fafc;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 5%;
-            background: rgba(15, 23, 42, 0.8);
-            border-bottom: 1px solid #1e293b;
-        }
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 6%;
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid #1e293b;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #38bdf8;
-        }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.5px;
+    }
 
-        nav a {
-            color: #94a3b8;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            transition: color 0.3s ease;
-        }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
 
-        nav a:hover {
-            color: #38bdf8;
-        }
+    nav a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
 
-        .hero {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 4rem 1rem;
-        }
+    nav a:hover {
+      color: #38bdf8;
+    }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            max-width: 700px;
-        }
+    .nav-btn {
+      background: transparent;
+      border: 1px solid #38bdf8;
+      color: #38bdf8;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
 
-        .hero h1 span {
-            color: #38bdf8;
-        }
+    .nav-btn:hover {
+      background: #38bdf8;
+      color: #0f172a;
+    }
 
-        .hero p {
-            color: #94a3b8;
-            font-size: 1.15rem;
-            max-width: 550px;
-            margin-bottom: 2rem;
-        }
+    /* Hero Section */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+    }
 
-        .cta-btn {
-            background-color: #38bdf8;
-            color: #0f172a;
-            padding: 0.8rem 1.8rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      max-width: 800px;
+    }
 
-        .cta-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
+    .hero h1 span {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            padding: 2rem 5% 4rem;
-        }
+    .hero p {
+      color: #94a3b8;
+      font-size: 1.15rem;
+      max-width: 580px;
+      margin-bottom: 2.2rem;
+    }
 
-        .card {
-            background: #1e293b;
-            padding: 1.5rem;
-            border-radius: 10px;
-            border: 1px solid #334155;
-        }
+    .cta-btn {
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #ffffff;
+      padding: 0.95rem 2.2rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-        .card h3 {
-            color: #e2e8f0;
-            margin-bottom: 0.5rem;
-        }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px -5px rgba(56, 189, 248, 0.5);
+    }
 
-        .card p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-        }
+    /* Features Section */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem 6% 5rem;
+    }
 
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            background: #090d16;
-            color: #64748b;
-            font-size: 0.85rem;
-        }
-    </style>
+    .card {
+      background: #1e293b;
+      padding: 1.8rem;
+      border-radius: 14px;
+      border: 1px solid #334155;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #475569;
+    }
+
+    .card h3 {
+      color: #f1f5f9;
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.8rem;
+      background: #090d16;
+      color: #64748b;
+      font-size: 0.9rem;
+      border-top: 1px solid #1e293b;
+    }
+
+    /* Modal Backdrop */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Login Card */
+    .login-card {
+      position: relative;
+      width: 100%;
+      max-width: 390px;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 40px 32px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      text-align: center;
+      transform: scale(0.92) translateY(10px);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-overlay.active .login-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: #f1f5f9;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 14px;
+      color: #64748b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .close-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    /* Interactive Monkey Avatar */
+    .avatar-wrapper {
+      width: 88px;
+      height: 88px;
+      background: #ffe8d6;
+      border-radius: 50%;
+      margin: 0 auto 18px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      user-select: none;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .login-card h2 {
+      color: #1e293b;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      color: #64748b;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    /* Inputs */
+    .input-box {
+      position: relative;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      outline: none;
+      font-size: 14px;
+      color: #1e293b;
+      background: #f8fafc;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .input-box input:focus {
+      border-color: #0284c7;
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+    }
+
+    .toggle-pass-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      opacity: 0.65;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-pass-btn:hover {
+      opacity: 1;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      border: none;
+      background: #0284c7;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .submit-btn:hover {
+      background: #0369a1;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Wrong Password Shake Animation */
+    .shake {
+      animation: shakeCard 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    }
+
+    @keyframes shakeCard {
+      10%, 90% { transform: translate3d(-3px, 0, 0); }
+      20%, 80% { transform: translate3d(5px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+      40%, 60% { transform: translate3d(6px, 0, 0); }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">DevPulse</div>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#features">Features</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+  <!-- Top Navbar -->
+  <header>
+    <div class="logo">DevPulse</div>
+    <nav>
+      <a href="#features">Features</a>
+      <button class="nav-btn" onclick="openModal()">Sign In</button>
+    </nav>
+  </header>
 
-    <main>
-        <section class="hero">
-            <h1>Build fast. <span>Ship faster.</span></h1>
-            <p>A minimalist starter template with clean CSS structure and responsive layout ready to deploy.</p>
-            <button class="cta-btn" onclick="alert('Welcome onboard!')">Get Started</button>
-        </section>
+  <!-- Hero Landing Section -->
+  <main>
+    <section class="hero">
+      <h1>Build fast. <span>Ship faster.</span></h1>
+      <p>Clean starter layout aur interactive monkey-animated login authentication modal ke sath ready template.</p>
+      <button class="cta-btn" onclick="openModal()">Get Started</button>
+    </section>
 
-        <section class="features" id="features">
-            <div class="card">
-                <h3>⚡ Fast Performance</h3>
-                <p>Pure HTML & CSS bina kisi heavy framework ya dependency ke.</p>
-            </div>
-            <div class="card">
-                <h3>📱 Responsive Design</h3>
-                <p>Mobile, tablet aur desktop har screen size par perfectly fit.</p>
-            </div>
-            <div class="card">
-                <h3>🎨 Dark Theme</h3>
-                <p>Modern dark-slate color palette jo aankhon ke liye comfortable hai.</p>
-            </div>
-        </section>
-    </main>
+    <!-- 3 Cards Grid -->
+    <section class="features" id="features">
+      <div class="card">
+        <h3>⚡ Fast & Pure</h3>
+        <p>Vanilla JavaScript aur modern responsive CSS layout, bina kisi external library ke load ke.</p>
+      </div>
+      <div class="card">
+        <h3>🙈 Interactive Avatar</h3>
+        <p>Password par aankhein band karne wala animated mascot jo user ko friendly feedback deta hai.</p>
+      </div>
+      <div class="card">
+        <h3>⌨️ Keyboard Ready</h3>
+        <p>Modal ko bahar click karke ya 'Escape' key press karke instant close kiya ja sakta hai.</p>
+      </div>
+    </section>
+  </main>
 
-    <footer>
-        &copy; 2026 DevPulse. All rights reserved.
-    </footer>
+  <footer>
+    &copy; 2026 DevPulse. All rights reserved.
+  </footer>
+
+  <!-- Modal Pop-up (Login Card) -->
+  <div class="modal-overlay" id="modalOverlay" onclick="handleBackdropClick(event)">
+    <div class="login-card" id="card">
+      <button class="close-btn" onclick="closeModal()" title="Close (Esc)">✕</button>
+      
+      <div class="avatar-wrapper" id="avatar">🐵</div>
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Default password: <strong>1234</strong></p>
+
+      <form onsubmit="handleLogin(event)">
+        <div class="input-box">
+          <input 
+            type="text" 
+            id="username" 
+            placeholder="Username ya Email" 
+            required 
+            autocomplete="off"
+            onfocus="onUsernameFocus()" 
+            onblur="onFieldBlur()"
+          >
+        </div>
+
+        <div class="input-box">
+          <input 
+            type="password" 
+            id="password" 
+            placeholder="Password (1234)" 
+            required 
+            onfocus="onPasswordFocus()" 
+            onblur="onFieldBlur()"
+          >
+          <button type="button" class="toggle-pass-btn" onclick="togglePasswordVisibility()" title="Show/Hide Password">👁️</button>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const modalOverlay = document.getElementById('modalOverlay');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const avatar = document.getElementById('avatar');
+    const card = document.getElementById('card');
+    const submitBtn = document.getElementById('submitBtn');
+
+    let isPasswordVisible = false;
+
+    /* Modal Controls */
+    function openModal() {
+      modalOverlay.classList.add('active');
+      setTimeout(() => usernameInput.focus(), 150);
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove('active');
+      avatar.innerText = '🐵';
+      avatar.style.transform = 'scale(1)';
+    }
+
+    function handleBackdropClick(e) {
+      if (e.target === modalOverlay) {
+        closeModal();
+      }
+    }
+
+    // Keyboard ESC key se modal close karne ke liye
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    /* Avatar Reactions */
+    function onUsernameFocus() {
+      avatar.innerText = '🐵';
+      avatar.style.transform = 'scale(1.1) rotate(-4deg)';
+    }
+
+    function onPasswordFocus() {
+      avatar.innerText = isPasswordVisible ? '🫣' : '🙈';
+      avatar.style.transform = 'scale(1.05)';
+    }
+
+    function onFieldBlur() {
+      avatar.innerText = '🐵';
+      avatar.style.transform = 'scale(1)';
+    }
+
+    function togglePasswordVisibility() {
+      isPasswordVisible = !isPasswordVisible;
+      passwordInput.type = isPasswordVisible ? 'text' : 'password';
+
+      // Agar password input active hai to avatar update kare
+      if (document.activeElement === passwordInput) {
+        avatar.innerText = isPasswordVisible ? '🫣' : '🙈';
+      }
+    }
+
+    /* Form Validation Handling */
+    function handleLogin(e) {
+      e.preventDefault();
+      const enteredPassword = passwordInput.value;
+
+      if (enteredPassword !== '1234') {
+        // Wrong password action
+        avatar.innerText = '🙉';
+        card.classList.add('shake');
+        passwordInput.style.borderColor = '#ef4444';
+
+        setTimeout(() => {
+          card.classList.remove('shake');
+          avatar.innerText = '🐵';
+          passwordInput.style.borderColor = '#e2e8f0';
+        }, 500);
+      } else {
+        // Success action
+        avatar.innerText = '🎉';
+        submitBtn.innerText = 'Signing In...';
+        submitBtn.style.background = '#10b981';
+
+        setTimeout(() => {
+          alert('Login Successful! Welcome to DevPulse.');
+          closeModal();
+          // Reset button back
+          submitBtn.innerText = 'Sign In';
+          submitBtn.style.background = '#0284c7';
+          passwordInput.value = '';
+          usernameInput.value = '';
+        }, 400);
+      }
+    }
+  </script>
 
 </body>
 </html>
-
