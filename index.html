@@ -21,6 +21,30 @@
       flex-direction: column;
     }
 
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #10b981;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+      z-index: 2000;
+      transition: top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .toast.show {
+      top: 24px;
+    }
+
     /* Header */
     header {
       display: flex;
@@ -44,7 +68,7 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.2rem;
     }
 
     nav a {
@@ -75,6 +99,40 @@
       color: #0f172a;
     }
 
+    /* User Logged-in profile badge */
+    .user-profile {
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #1e293b;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid #334155;
+      font-size: 0.9rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
+    .logout-btn {
+      background: none;
+      border: none;
+      color: #ef4444;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      padding: 6px 10px;
+    }
+
+    .logout-btn:hover {
+      text-decoration: underline;
+    }
+
     /* Hero Section */
     .hero {
       flex: 1;
@@ -83,11 +141,11 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 6rem 1.5rem 4rem;
+      padding: 5rem 1.5rem 3rem;
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
       font-weight: 800;
       line-height: 1.15;
       margin-bottom: 1.25rem;
@@ -192,10 +250,10 @@
     .login-card {
       position: relative;
       width: 100%;
-      max-width: 390px;
+      max-width: 380px;
       background: #ffffff;
       border-radius: 24px;
-      padding: 40px 32px;
+      padding: 38px 28px;
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
       text-align: center;
       transform: scale(0.92) translateY(10px);
@@ -231,15 +289,15 @@
 
     /* Interactive Monkey Avatar */
     .avatar-wrapper {
-      width: 88px;
-      height: 88px;
+      width: 84px;
+      height: 84px;
       background: #ffe8d6;
       border-radius: 50%;
-      margin: 0 auto 18px auto;
+      margin: 0 auto 16px auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 44px;
+      font-size: 42px;
       user-select: none;
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
       box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.06);
@@ -247,21 +305,21 @@
 
     .login-card h2 {
       color: #1e293b;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .subtitle {
       color: #64748b;
       font-size: 13px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
     /* Inputs */
     .input-box {
       position: relative;
-      margin-bottom: 16px;
+      margin-bottom: 15px;
       text-align: left;
     }
 
@@ -299,10 +357,6 @@
       justify-content: center;
     }
 
-    .toggle-pass-btn:hover {
-      opacity: 1;
-    }
-
     /* Submit Button */
     .submit-btn {
       width: 100%;
@@ -327,7 +381,7 @@
       transform: scale(0.98);
     }
 
-    /* Wrong Password Shake Animation */
+    /* Wrong Password Shake */
     .shake {
       animation: shakeCard 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
     }
@@ -342,24 +396,38 @@
 </head>
 <body>
 
-  <!-- Top Navbar -->
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <span>🎉</span> <span id="toastMsg">Login Successful!</span>
+  </div>
+
+  <!-- Navbar -->
   <header>
     <div class="logo">DevPulse</div>
     <nav>
       <a href="#features">Features</a>
-      <button class="nav-btn" onclick="openModal()">Sign In</button>
+
+      <!-- Guest State -->
+      <button class="nav-btn" id="navLoginBtn" onclick="openModal()">Sign In</button>
+
+      <!-- Logged-in State -->
+      <div class="user-profile" id="userProfile">
+        <div class="user-badge">
+          <span>⚡</span> <span id="displayUser">User</span>
+        </div>
+        <button class="logout-btn" onclick="handleLogout()">Logout</button>
+      </div>
     </nav>
   </header>
 
   <!-- Hero Landing Section -->
   <main>
     <section class="hero">
-      <h1>Build fast. <span>Ship faster.</span></h1>
-      <p>Clean starter layout aur interactive monkey-animated login authentication modal ke sath ready template.</p>
-      <button class="cta-btn" onclick="openModal()">Get Started</button>
+      <h1 id="heroTitle">Build fast. <span>Ship faster.</span></h1>
+      <p id="heroDesc">Clean starter layout aur interactive monkey-animated login authentication modal ke sath ready template.</p>
+      <button class="cta-btn" id="heroBtn" onclick="openModal()">Get Started</button>
     </section>
 
-    <!-- 3 Cards Grid -->
     <section class="features" id="features">
       <div class="card">
         <h3>⚡ Fast & Pure</h3>
@@ -370,8 +438,8 @@
         <p>Password par aankhein band karne wala animated mascot jo user ko friendly feedback deta hai.</p>
       </div>
       <div class="card">
-        <h3>⌨️ Keyboard Ready</h3>
-        <p>Modal ko bahar click karke ya 'Escape' key press karke instant close kiya ja sakta hai.</p>
+        <h3>✨ Modern Toast Feedback</h3>
+        <p>Native browser alert ki jagah smooth app-style notification alerts.</p>
       </div>
     </section>
   </main>
@@ -426,8 +494,27 @@
     const avatar = document.getElementById('avatar');
     const card = document.getElementById('card');
     const submitBtn = document.getElementById('submitBtn');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
+
+    const navLoginBtn = document.getElementById('navLoginBtn');
+    const userProfile = document.getElementById('userProfile');
+    const displayUser = document.getElementById('displayUser');
+    const heroTitle = document.getElementById('heroTitle');
+    const heroDesc = document.getElementById('heroDesc');
+    const heroBtn = document.getElementById('heroBtn');
 
     let isPasswordVisible = false;
+
+    /* Toast Notification */
+    function showToast(message, isError = false) {
+      toastMsg.innerText = message;
+      toast.style.background = isError ? '#ef4444' : '#10b981';
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
 
     /* Modal Controls */
     function openModal() {
@@ -442,12 +529,9 @@
     }
 
     function handleBackdropClick(e) {
-      if (e.target === modalOverlay) {
-        closeModal();
-      }
+      if (e.target === modalOverlay) closeModal();
     }
 
-    // Keyboard ESC key se modal close karne ke liye
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
         closeModal();
@@ -474,22 +558,23 @@
       isPasswordVisible = !isPasswordVisible;
       passwordInput.type = isPasswordVisible ? 'text' : 'password';
 
-      // Agar password input active hai to avatar update kare
       if (document.activeElement === passwordInput) {
         avatar.innerText = isPasswordVisible ? '🫣' : '🙈';
       }
     }
 
-    /* Form Validation Handling */
+    /* Form Login Logic */
     function handleLogin(e) {
       e.preventDefault();
       const enteredPassword = passwordInput.value;
+      const enteredUsername = usernameInput.value;
 
       if (enteredPassword !== '1234') {
-        // Wrong password action
+        // Wrong password
         avatar.innerText = '🙉';
         card.classList.add('shake');
         passwordInput.style.borderColor = '#ef4444';
+        showToast('Galat password! Try "1234"', true);
 
         setTimeout(() => {
           card.classList.remove('shake');
@@ -497,21 +582,45 @@
           passwordInput.style.borderColor = '#e2e8f0';
         }, 500);
       } else {
-        // Success action
+        // Success
         avatar.innerText = '🎉';
         submitBtn.innerText = 'Signing In...';
         submitBtn.style.background = '#10b981';
 
         setTimeout(() => {
-          alert('Login Successful! Welcome to DevPulse.');
           closeModal();
-          // Reset button back
+          showToast(`Welcome back, ${enteredUsername}!`);
+
+          // Update UI to Logged-in Mode
+          navLoginBtn.style.display = 'none';
+          userProfile.style.display = 'flex';
+          displayUser.innerText = enteredUsername;
+
+          heroTitle.innerHTML = `Welcome back, <span>${enteredUsername}!</span>`;
+          heroDesc.innerText = 'Aapka account successfully login ho chuka hai. Aap apna workspace access kar sakte hain.';
+          heroBtn.innerText = 'Go to Dashboard';
+          heroBtn.onclick = () => showToast('Dashboard feature coming soon!');
+
+          // Reset modal form
           submitBtn.innerText = 'Sign In';
           submitBtn.style.background = '#0284c7';
           passwordInput.value = '';
           usernameInput.value = '';
-        }, 400);
+        }, 600);
       }
+    }
+
+    /* Logout Logic */
+    function handleLogout() {
+      navLoginBtn.style.display = 'block';
+      userProfile.style.display = 'none';
+
+      heroTitle.innerHTML = 'Build fast. <span>Ship faster.</span>';
+      heroDesc.innerText = 'Clean starter layout aur interactive monkey-animated login authentication modal ke sath ready template.';
+      heroBtn.innerText = 'Get Started';
+      heroBtn.onclick = openModal;
+
+      showToast('Logged out successfully!');
     }
   </script>
 
