@@ -50,7 +50,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.25rem 6%;
+      padding: 1.2rem 6%;
       background: rgba(15, 23, 42, 0.95);
       border-bottom: 1px solid #1e293b;
       position: sticky;
@@ -63,6 +63,7 @@
       font-weight: 800;
       color: #38bdf8;
       letter-spacing: -0.5px;
+      cursor: pointer;
     }
 
     nav {
@@ -133,7 +134,13 @@
       text-decoration: underline;
     }
 
-    /* Hero Section */
+    /* Landing Page Section */
+    #landingView {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
     .hero {
       flex: 1;
       display: flex;
@@ -183,7 +190,6 @@
       box-shadow: 0 15px 30px -5px rgba(56, 189, 248, 0.5);
     }
 
-    /* Features Section */
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -213,6 +219,117 @@
     .card p {
       color: #94a3b8;
       font-size: 0.95rem;
+    }
+
+    /* ---------------- DASHBOARD VIEW ---------------- */
+    #dashboardView {
+      display: none;
+      flex: 1;
+      padding: 2.5rem 6%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dash-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .dash-header h2 {
+      font-size: 1.8rem;
+      color: #f8fafc;
+    }
+
+    .dash-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .action-btn {
+      background: #38bdf8;
+      color: #0f172a;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      padding: 1.5rem;
+      border-radius: 14px;
+    }
+
+    .stat-title {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #f8fafc;
+      margin: 8px 0 4px 0;
+    }
+
+    .stat-sub {
+      font-size: 0.85rem;
+      color: #10b981;
+    }
+
+    .recent-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 1.5rem;
+    }
+
+    .recent-box h3 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      color: #f1f5f9;
+    }
+
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #334155;
+      font-size: 0.95rem;
+    }
+
+    .list-item:last-child {
+      border-bottom: none;
+    }
+
+    .tag {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
     }
 
     /* Footer */
@@ -282,12 +399,6 @@
       transition: all 0.2s ease;
     }
 
-    .close-btn:hover {
-      background: #e2e8f0;
-      color: #0f172a;
-    }
-
-    /* Interactive Monkey Avatar */
     .avatar-wrapper {
       width: 84px;
       height: 84px;
@@ -316,7 +427,6 @@
       margin-bottom: 22px;
     }
 
-    /* Inputs */
     .input-box {
       position: relative;
       margin-bottom: 15px;
@@ -332,7 +442,7 @@
       font-size: 14px;
       color: #1e293b;
       background: #f8fafc;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: border-color 0.2s ease;
     }
 
     .input-box input:focus {
@@ -352,12 +462,8 @@
       cursor: pointer;
       opacity: 0.65;
       padding: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    /* Submit Button */
     .submit-btn {
       width: 100%;
       padding: 13px;
@@ -370,18 +476,9 @@
       cursor: pointer;
       margin-top: 8px;
       box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
-      transition: background 0.2s ease, transform 0.1s ease;
+      transition: background 0.2s ease;
     }
 
-    .submit-btn:hover {
-      background: #0369a1;
-    }
-
-    .submit-btn:active {
-      transform: scale(0.98);
-    }
-
-    /* Wrong Password Shake */
     .shake {
       animation: shakeCard 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
     }
@@ -398,15 +495,13 @@
 
   <!-- Toast Notification -->
   <div class="toast" id="toast">
-    <span>🎉</span> <span id="toastMsg">Login Successful!</span>
+    <span>🎉</span> <span id="toastMsg">Action Done!</span>
   </div>
 
   <!-- Navbar -->
   <header>
-    <div class="logo">DevPulse</div>
+    <div class="logo" onclick="showLanding()">DevPulse</div>
     <nav>
-      <a href="#features">Features</a>
-
       <!-- Guest State -->
       <button class="nav-btn" id="navLoginBtn" onclick="openModal()">Sign In</button>
 
@@ -420,38 +515,91 @@
     </nav>
   </header>
 
-  <!-- Hero Landing Section -->
-  <main>
-    <section class="hero">
+  <!-- 1. LANDING PAGE VIEW -->
+  <div id="landingView">
+    <main class="hero">
       <h1 id="heroTitle">Build fast. <span>Ship faster.</span></h1>
       <p id="heroDesc">Clean starter layout aur interactive monkey-animated login authentication modal ke sath ready template.</p>
       <button class="cta-btn" id="heroBtn" onclick="openModal()">Get Started</button>
-    </section>
+    </main>
 
-    <section class="features" id="features">
+    <section class="features">
       <div class="card">
         <h3>⚡ Fast & Pure</h3>
-        <p>Vanilla JavaScript aur modern responsive CSS layout, bina kisi external library ke load ke.</p>
+        <p>Vanilla JavaScript aur modern responsive CSS layout bina kisi external framework ke.</p>
       </div>
       <div class="card">
         <h3>🙈 Interactive Avatar</h3>
-        <p>Password par aankhein band karne wala animated mascot jo user ko friendly feedback deta hai.</p>
+        <p>Password par react karne wala dynamic monkey animation mascot.</p>
       </div>
       <div class="card">
-        <h3>✨ Modern Toast Feedback</h3>
-        <p>Native browser alert ki jagah smooth app-style notification alerts.</p>
+        <h3>📊 Integrated Dashboard</h3>
+        <p>Sign-in karte hi instant live dashboard view me switch karne ki facility.</p>
       </div>
     </section>
+  </div>
+
+  <!-- 2. DASHBOARD VIEW (Shown after clicking Go to Dashboard) -->
+  <main id="dashboardView">
+    <div class="dash-header">
+      <div>
+        <h2 id="dashWelcome">Welcome to Dashboard</h2>
+        <p style="color: #94a3b8; font-size: 0.95rem;">Yahan aapka analytics aur project workspace hai.</p>
+      </div>
+      <div class="dash-actions">
+        <button class="action-btn" onclick="addNewProject()">+ New Project</button>
+      </div>
+    </div>
+
+    <!-- Quick Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-title">Total Projects</div>
+        <div class="stat-value" id="projectCount">3</div>
+        <div class="stat-sub">↑ 1 active recently</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Storage Used</div>
+        <div class="stat-value">1.4 GB</div>
+        <div class="stat-sub" style="color: #38bdf8;">28% of 5 GB</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">API Requests</div>
+        <div class="stat-value">12.8k</div>
+        <div class="stat-sub">⚡ 99.9% Uptime</div>
+      </div>
+    </div>
+
+    <!-- Project List -->
+    <div class="recent-box">
+      <h3>Active Deployments</h3>
+      <div id="projectList">
+        <div class="list-item">
+          <div>
+            <strong>DevPulse Landing</strong>
+            <p style="color: #64748b; font-size: 0.8rem;">Updated just now</p>
+          </div>
+          <span class="tag">Live 🟢</span>
+        </div>
+        <div class="list-item">
+          <div>
+            <strong>Auth Animation API</strong>
+            <p style="color: #64748b; font-size: 0.8rem;">Updated 2 hours ago</p>
+          </div>
+          <span class="tag">Live 🟢</span>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
     &copy; 2026 DevPulse. All rights reserved.
   </footer>
 
-  <!-- Modal Pop-up (Login Card) -->
+  <!-- Modal Pop-up -->
   <div class="modal-overlay" id="modalOverlay" onclick="handleBackdropClick(event)">
     <div class="login-card" id="card">
-      <button class="close-btn" onclick="closeModal()" title="Close (Esc)">✕</button>
+      <button class="close-btn" onclick="closeModal()">✕</button>
       
       <div class="avatar-wrapper" id="avatar">🐵</div>
       <h2>Welcome Back</h2>
@@ -479,7 +627,7 @@
             onfocus="onPasswordFocus()" 
             onblur="onFieldBlur()"
           >
-          <button type="button" class="toggle-pass-btn" onclick="togglePasswordVisibility()" title="Show/Hide Password">👁️</button>
+          <button type="button" class="toggle-pass-btn" onclick="togglePasswordVisibility()">👁️</button>
         </div>
 
         <button type="submit" class="submit-btn" id="submitBtn">Sign In</button>
@@ -504,16 +652,20 @@
     const heroDesc = document.getElementById('heroDesc');
     const heroBtn = document.getElementById('heroBtn');
 
-    let isPasswordVisible = false;
+    const landingView = document.getElementById('landingView');
+    const dashboardView = document.getElementById('dashboardView');
+    const dashWelcome = document.getElementById('dashWelcome');
 
-    /* Toast Notification */
+    let isPasswordVisible = false;
+    let currentUser = '';
+    let projects = 2;
+
+    /* Toast */
     function showToast(message, isError = false) {
       toastMsg.innerText = message;
       toast.style.background = isError ? '#ef4444' : '#10b981';
       toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
+      setTimeout(() => toast.classList.remove('show'), 2500);
     }
 
     /* Modal Controls */
@@ -533,9 +685,7 @@
     }
 
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-        closeModal();
-      }
+      if (e.key === 'Escape' && modalOverlay.classList.contains('active')) closeModal();
     });
 
     /* Avatar Reactions */
@@ -557,20 +707,18 @@
     function togglePasswordVisibility() {
       isPasswordVisible = !isPasswordVisible;
       passwordInput.type = isPasswordVisible ? 'text' : 'password';
-
       if (document.activeElement === passwordInput) {
         avatar.innerText = isPasswordVisible ? '🫣' : '🙈';
       }
     }
 
-    /* Form Login Logic */
+    /* Login Logic */
     function handleLogin(e) {
       e.preventDefault();
       const enteredPassword = passwordInput.value;
       const enteredUsername = usernameInput.value;
 
       if (enteredPassword !== '1234') {
-        // Wrong password
         avatar.innerText = '🙉';
         card.classList.add('shake');
         passwordInput.style.borderColor = '#ef4444';
@@ -582,47 +730,50 @@
           passwordInput.style.borderColor = '#e2e8f0';
         }, 500);
       } else {
-        // Success
         avatar.innerText = '🎉';
         submitBtn.innerText = 'Signing In...';
         submitBtn.style.background = '#10b981';
 
         setTimeout(() => {
           closeModal();
-          showToast(`Welcome back, ${enteredUsername}!`);
+          currentUser = enteredUsername;
+          showToast(`Welcome back, ${currentUser}!`);
 
-          // Update UI to Logged-in Mode
+          // Update UI state
           navLoginBtn.style.display = 'none';
           userProfile.style.display = 'flex';
-          displayUser.innerText = enteredUsername;
+          displayUser.innerText = currentUser;
 
-          heroTitle.innerHTML = `Welcome back, <span>${enteredUsername}!</span>`;
-          heroDesc.innerText = 'Aapka account successfully login ho chuka hai. Aap apna workspace access kar sakte hain.';
+          heroTitle.innerHTML = `Welcome back, <span>${currentUser}!</span>`;
+          heroDesc.innerText = 'Aapka account successfully login ho chuka hai. Dashboard access karne ke liye niche click karein.';
           heroBtn.innerText = 'Go to Dashboard';
-          heroBtn.onclick = () => showToast('Dashboard feature coming soon!');
+          heroBtn.onclick = showDashboard;
 
           // Reset modal form
           submitBtn.innerText = 'Sign In';
           submitBtn.style.background = '#0284c7';
           passwordInput.value = '';
           usernameInput.value = '';
-        }, 600);
+        }, 500);
       }
     }
 
-    /* Logout Logic */
-    function handleLogout() {
-      navLoginBtn.style.display = 'block';
-      userProfile.style.display = 'none';
-
-      heroTitle.innerHTML = 'Build fast. <span>Ship faster.</span>';
-      heroDesc.innerText = 'Clean starter layout aur interactive monkey-animated login authentication modal ke sath ready template.';
-      heroBtn.innerText = 'Get Started';
-      heroBtn.onclick = openModal;
-
-      showToast('Logged out successfully!');
+    /* Dashboard Switching */
+    function showDashboard() {
+      landingView.style.display = 'none';
+      dashboardView.style.display = 'block';
+      dashWelcome.innerText = `Welcome back, ${currentUser || 'Developer'}!`;
+      showToast('Dashboard loaded!');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  </script>
 
-</body>
-</html>
+    function showLanding() {
+      dashboardView.style.display = 'none';
+      landingView.style.display = 'flex';
+    }
+
+    function addNewProject() {
+      projects++;
+      document.getElementById('projectCount').innerText = projects;
+      const projectList = document.getElementById('projectList');
+      con
